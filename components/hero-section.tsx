@@ -8,8 +8,10 @@ import { useI18n } from '@/lib/i18n'
 
 const AICore = dynamic(() => import('./ai-core'), { ssr: false })
 
-// Intro overlay runs ~2.6s; hero content reveals as it lifts.
-const BASE = 2.4
+// Intro overlay (z-100) covers the hero for ~2.6s, so hero content can reveal
+// quickly underneath it. A small base delay keeps a subtle stagger without
+// tying the reveal to the intro timeline (which would break on language switch).
+const BASE = 0.15
 
 export default function HeroSection() {
   const { t } = useI18n()

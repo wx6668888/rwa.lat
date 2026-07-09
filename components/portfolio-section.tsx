@@ -69,6 +69,14 @@ function PortfolioChart() {
 }
 
 export default function PortfolioSection() {
+  const { t } = useI18n()
+
+  const assets = [
+    { name: t.portfolio.stocks, allocation: 52, value: '$66,841', change: '+12.4%', up: true, color: '#2EE88E' },
+    { name: t.portfolio.aiCompute, allocation: 31, value: '$39,847', change: '+28.6%', up: true, color: '#5FF3AB' },
+    { name: t.portfolio.cash, allocation: 17, value: '$21,852', change: '+0.8%', up: true, color: '#93C5FD' },
+  ]
+
   return (
     <section id="signals" className="relative py-24 px-4 overflow-hidden" aria-label="Portfolio Intelligence">
       <div className="max-w-5xl mx-auto">
@@ -80,27 +88,11 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium mb-5"
-            style={{
-              background: 'rgba(46, 232, 142,0.08)',
-              border: '1px solid rgba(46, 232, 142,0.2)',
-              color: '#5FF3AB',
-            }}
-          >
-            Personal Portfolio Intelligence
-          </div>
           <WordReveal
             as="h2"
-            text="Your Portfolio, Reimagined."
+            text={t.portfolio.heading}
             stagger={0.09}
-            className="text-balance text-4xl md:text-5xl font-bold"
-            style={{
-              background: 'linear-gradient(180deg, #FFFFFF 0%, #6B7280 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
+            className="text-balance text-3xl md:text-5xl font-bold text-white"
           />
         </motion.div>
 
@@ -123,7 +115,7 @@ export default function PortfolioSection() {
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-8">
             <div>
               <div className="text-xs font-medium mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                Total Portfolio Value
+                {t.portfolio.totalValue}
               </div>
               <div className="text-4xl md:text-5xl font-bold text-white">
                 <CountUp to={128540} duration={2.4} prefix="$" separator />
@@ -132,7 +124,7 @@ export default function PortfolioSection() {
                 <span className="text-sm font-semibold" style={{ color: '#34D399' }}>
                   <CountUp to={14230} duration={2} prefix="+$" separator />
                 </span>
-                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>+12.4% this month</span>
+                <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>+12.4% {t.portfolio.thisMonth}</span>
               </div>
             </div>
 
@@ -172,10 +164,10 @@ export default function PortfolioSection() {
               </div>
               <div>
                 <div className="text-xs font-medium" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                  AI Portfolio Score
+                  {t.portfolio.aiScore}
                 </div>
-                <div className="text-sm font-semibold text-white mt-0.5">Excellent</div>
-                <div className="text-xs mt-0.5" style={{ color: '#34D399' }}>Top 8% globally</div>
+                <div className="text-sm font-semibold text-white mt-0.5">{t.portfolio.excellent}</div>
+                <div className="text-xs mt-0.5" style={{ color: '#34D399' }}>{t.portfolio.topGlobally}</div>
               </div>
             </div>
           </div>
@@ -216,7 +208,7 @@ export default function PortfolioSection() {
                   />
                 </div>
                 <div className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                  {asset.allocation}% allocation
+                  {asset.allocation}% {t.portfolio.allocation}
                 </div>
               </motion.div>
             ))}

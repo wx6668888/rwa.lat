@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { WordReveal, CountUp, TiltCard } from './motion-primitives'
 import { useI18n } from '@/lib/i18n'
@@ -381,7 +381,7 @@ const containerVariants = {
   },
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
   visible: {
     opacity: 1,
