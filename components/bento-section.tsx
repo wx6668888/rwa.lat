@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { WordReveal, CountUp, TiltCard } from './motion-primitives'
+import { useI18n } from '@/lib/i18n'
 
 // --- AI Agent Card ---
 const chatMessages = [
@@ -13,6 +14,7 @@ const chatMessages = [
 ]
 
 function AIAgentCard() {
+  const { t } = useI18n()
   const [visibleMessages, setVisibleMessages] = useState(0)
   const [typing, setTyping] = useState(false)
 
@@ -51,13 +53,13 @@ function AIAgentCard() {
           </svg>
         </div>
         <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
-          AI Investment Agent
+          {t.bento.agent}
         </span>
         <span
           className="ml-auto text-xs px-2 py-0.5 rounded-full"
           style={{ background: 'rgba(46, 232, 142,0.15)', color: '#5FF3AB', border: '1px solid rgba(46, 232, 142,0.25)' }}
         >
-          Active
+          {t.bento.active}
         </span>
       </div>
 
@@ -119,6 +121,7 @@ function AIAgentCard() {
 
 // --- Stock Intelligence Card ---
 function StockCard() {
+  const { t } = useI18n()
   const points = [40, 52, 38, 65, 58, 72, 68, 85, 78, 92, 88, 96]
   const w = 260
   const h = 80
@@ -143,7 +146,7 @@ function StockCard() {
           </svg>
         </div>
         <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
-          Stock Intelligence
+          {t.bento.stock}
         </span>
       </div>
 
@@ -191,7 +194,7 @@ function StockCard() {
       </div>
 
       <div className="flex items-center justify-between mt-3">
-        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>90-day trend</span>
+        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>{t.bento.stockTrend}</span>
         <span className="text-xs font-semibold" style={{ color: '#34D399' }}>+42.6%</span>
       </div>
     </div>
@@ -206,6 +209,7 @@ const gpuModels = [
 ]
 
 function ComputeCard() {
+  const { t } = useI18n()
   return (
     <div className="flex flex-col h-full p-6">
       <div className="flex items-center gap-2 mb-4">
@@ -219,7 +223,7 @@ function ComputeCard() {
           </svg>
         </div>
         <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
-          AI Compute Infrastructure
+          {t.bento.compute}
         </span>
       </div>
 
@@ -267,7 +271,7 @@ function ComputeCard() {
               </div>
             </div>
             <div className="text-xs mt-1.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              Utilization
+              {t.bento.utilization}
             </div>
           </div>
         ))}
@@ -300,6 +304,7 @@ const predictions = [
 ]
 
 function PredictionCard() {
+  const { t } = useI18n()
   return (
     <div className="flex flex-col h-full p-6">
       <div className="flex items-center gap-2 mb-1">
@@ -312,15 +317,15 @@ function PredictionCard() {
           </svg>
         </div>
         <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
-          Prediction Intelligence
+          {t.bento.prediction}
         </span>
         <span className="ml-auto text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
-          via Polymarket
+          {t.bento.via}
         </span>
       </div>
 
       <div className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.25)' }}>
-        AI-interpreted market signals
+        {t.bento.signals}
       </div>
 
       <div className="flex flex-col gap-3">
@@ -394,8 +399,9 @@ const cards = [
 ]
 
 export default function BentoSection() {
+  const { t } = useI18n()
   return (
-    <section id="product" className="relative py-24 px-4 max-w-6xl mx-auto" aria-label="Intelligence modules">
+    <section id="product" className="relative py-24 px-4 max-w-6xl mx-auto" aria-label="Platform modules">
       {/* Section header */}
       <motion.div
         className="text-center mb-16"
@@ -404,30 +410,14 @@ export default function BentoSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <div
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium mb-5"
-          style={{
-            background: 'rgba(46, 232, 142,0.08)',
-            border: '1px solid rgba(46, 232, 142,0.2)',
-            color: '#5FF3AB',
-          }}
-        >
-          Intelligence Modules
-        </div>
         <WordReveal
           as="h2"
-          text="One Platform. Full Spectrum."
+          text={t.bento.heading}
           stagger={0.09}
-          className="text-balance text-4xl md:text-5xl font-bold mb-4"
-          style={{
-            background: 'linear-gradient(180deg, #FFFFFF 0%, #6B7280 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
+          className="text-balance text-3xl md:text-5xl font-bold mb-4 text-white"
         />
         <p className="text-base max-w-md mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
-          Every module powered by proprietary AI, working together to give you a complete investment edge.
+          {t.bento.subtitle}
         </p>
       </motion.div>
 

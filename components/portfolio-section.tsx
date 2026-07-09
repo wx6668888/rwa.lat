@@ -2,15 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { WordReveal, CountUp } from './motion-primitives'
+import { useI18n } from '@/lib/i18n'
 
 const portfolioPoints = [
   62, 58, 71, 68, 75, 72, 80, 76, 84, 81, 88, 87, 91, 89, 94, 92, 96, 95, 100, 98,
-]
-
-const assets = [
-  { name: 'Stocks', allocation: 52, value: '$66,841', change: '+12.4%', up: true, color: '#2EE88E' },
-  { name: 'AI Compute', allocation: 31, value: '$39,847', change: '+28.6%', up: true, color: '#5FF3AB' },
-  { name: 'Cash', allocation: 17, value: '$21,852', change: '+0.8%', up: true, color: '#93C5FD' },
 ]
 
 function PortfolioChart() {
