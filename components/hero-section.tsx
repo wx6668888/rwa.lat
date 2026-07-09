@@ -29,7 +29,7 @@ export default function HeroSection() {
       ref={ref}
       className="relative min-h-screen flex overflow-hidden"
       aria-label="Hero"
-      style={{ background: '#0A0A0B' }}
+      style={{ background: '#000000' }}
     >
       {/* Faint grid lines (subtle, no colored glow) */}
       <div
@@ -47,12 +47,12 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Globe — centered, large. Sits a bit higher on mobile so it clears the copy. */}
-      <div className="absolute inset-0 z-0 flex items-start justify-center pt-16 sm:pt-8 md:items-center md:pt-0">
+      {/* Globe — subtle background element, sits higher and to the right so it clears the copy. */}
+      <div className="absolute inset-0 z-0 flex items-start justify-center pt-10 sm:pt-6 md:items-center md:pt-0">
         <motion.div
-          className="w-full max-w-[680px]"
+          className="w-full max-w-[380px] sm:max-w-[440px] md:max-w-[520px] opacity-80"
           initial={{ opacity: 0, scale: 0.75, filter: 'blur(18px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          animate={{ opacity: 0.8, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <AICore />
@@ -70,16 +70,16 @@ export default function HeroSection() {
             text={t.hero.title1}
             delay={BASE + 0.05}
             stagger={0.1}
-            className="text-balance leading-[0.95] font-bold tracking-tight text-white"
-            style={{ fontSize: 'clamp(2.5rem, 12vw, 5.5rem)' }}
+            className="text-balance leading-[1.05] font-bold tracking-tight text-white"
+            style={{ fontSize: 'clamp(1.9rem, 8vw, 3.5rem)' }}
           />
           <WordReveal
             as="h2"
             text={t.hero.title2}
             delay={BASE + 0.25}
             stagger={0.1}
-            className="text-balance leading-[0.95] font-bold tracking-tight mb-6"
-            style={{ fontSize: 'clamp(2.5rem, 12vw, 5.5rem)', color: '#2EE88E' }}
+            className="text-balance leading-[1.05] font-bold tracking-tight mb-5"
+            style={{ fontSize: 'clamp(1.9rem, 8vw, 3.5rem)', color: '#2EE88E' }}
           />
 
           <motion.p
