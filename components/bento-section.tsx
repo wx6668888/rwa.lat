@@ -45,19 +45,19 @@ function AIAgentCard() {
       <div className="flex items-center gap-2 mb-4">
         <div
           className="w-6 h-6 rounded-lg flex items-center justify-center"
-          style={{ background: 'rgba(46, 232, 142,0.2)', border: '1px solid rgba(46, 232, 142,0.4)' }}
+          style={{ background: 'rgba(46, 232, 142,0.25)', border: '1px solid rgba(255,255,255,0.2)' }}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <circle cx="7" cy="7" r="4" stroke="#2EE88E" strokeWidth="1.5" />
             <circle cx="7" cy="7" r="1.5" fill="#2EE88E" />
           </svg>
         </div>
-        <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
+        <span className="text-xs font-semibold" style={{ color: '#FFFFFF' }}>
           {t.bento.agent}
         </span>
         <span
-          className="ml-auto text-xs px-2 py-0.5 rounded-full"
-          style={{ background: 'rgba(46, 232, 142,0.15)', color: '#5FF3AB', border: '1px solid rgba(46, 232, 142,0.25)' }}
+          className="ml-auto px-2 py-0.5 rounded-full font-bold"
+          style={{ background: '#2EE88E', color: '#05140C', fontSize: '11px' }}
         >
           {t.bento.active}
         </span>
@@ -79,9 +79,9 @@ function AIAgentCard() {
                 background:
                   msg.role === 'user'
                     ? 'rgba(46, 232, 142,0.2)'
-                    : 'rgba(255,255,255,0.06)',
-                border: `1px solid ${msg.role === 'user' ? 'rgba(46, 232, 142,0.3)' : 'rgba(255,255,255,0.08)'}`,
-                color: msg.role === 'user' ? '#93C5FD' : 'rgba(255,255,255,0.75)',
+                    : 'rgba(255,255,255,0.10)',
+                border: `1px solid ${msg.role === 'user' ? 'rgba(46, 232, 142,0.3)' : 'rgba(255,255,255,0.18)'}`,
+                color: '#FFFFFF',
               }}
             >
               {msg.text}
@@ -98,8 +98,8 @@ function AIAgentCard() {
               className="px-3 py-2 flex gap-1 items-center"
               style={{
                 borderRadius: '12px 12px 12px 2px',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                background: 'rgba(255,255,255,0.10)',
+                border: '1px solid rgba(255,255,255,0.18)',
               }}
             >
               {[0, 1, 2].map((i) => (
@@ -139,13 +139,13 @@ function StockCard() {
       <div className="flex items-center gap-2 mb-4">
         <div
           className="w-6 h-6 rounded-lg flex items-center justify-center"
-          style={{ background: 'rgba(52,211,153,0.15)', border: '1px solid rgba(52,211,153,0.3)' }}
+          style={{ background: 'rgba(52,211,153,0.15)', border: '1px solid rgba(255,255,255,0.2)' }}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <polyline points="1,11 5,6 8,8 13,2" stroke="#34D399" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
+        <span className="text-xs font-semibold" style={{ color: '#FFFFFF' }}>
           {t.bento.stock}
         </span>
       </div>
@@ -153,7 +153,7 @@ function StockCard() {
       <div className="flex items-end justify-between mb-3">
         <div>
           <div className="text-lg font-bold text-white">NVDA</div>
-          <div className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>NVIDIA Corporation</div>
+          <div className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>NVIDIA Corporation</div>
         </div>
         <div className="text-right">
           <CountUp
@@ -166,7 +166,7 @@ function StockCard() {
               WebkitTextFillColor: 'transparent',
             }}
           />
-          <div className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>AI Score</div>
+          <div className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>AI Score</div>
         </div>
       </div>
 
@@ -194,7 +194,7 @@ function StockCard() {
       </div>
 
       <div className="flex items-center justify-between mt-3">
-        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>{t.bento.stockTrend}</span>
+        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>{t.bento.stockTrend}</span>
         <span className="text-xs font-semibold" style={{ color: '#34D399' }}>+42.6%</span>
       </div>
     </div>
@@ -215,14 +215,14 @@ function ComputeCard() {
       <div className="flex items-center gap-2 mb-4">
         <div
           className="w-6 h-6 rounded-lg flex items-center justify-center"
-          style={{ background: 'rgba(96,165,250,0.15)', border: '1px solid rgba(96,165,250,0.3)' }}
+          style={{ background: 'rgba(96,165,250,0.15)', border: '1px solid rgba(255,255,255,0.2)' }}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <rect x="2" y="2" width="10" height="10" rx="1.5" stroke="#5FF3AB" strokeWidth="1.5" />
             <rect x="4.5" y="4.5" width="5" height="5" rx="1" fill="#5FF3AB" opacity="0.4" />
           </svg>
         </div>
-        <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
+        <span className="text-xs font-semibold" style={{ color: '#FFFFFF' }}>
           {t.bento.compute}
         </span>
       </div>
@@ -237,13 +237,13 @@ function ComputeCard() {
               border: '1px solid rgba(255,255,255,0.08)',
             }}
           >
-            <div className="text-xs font-bold mb-2" style={{ color: gpu.color }}>
+            <div className="text-xs mb-2" style={{ color: '#FFFFFF', fontWeight: 700 }}>
               {gpu.name}
             </div>
             {/* Circular utilization */}
             <div className="relative w-12 h-12">
               <svg width="48" height="48" viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3" />
+                <circle cx="24" cy="24" r="18" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="3" />
                 <motion.circle
                   cx="24"
                   cy="24"
@@ -264,13 +264,13 @@ function ComputeCard() {
                 />
               </svg>
               <div
-                className="absolute inset-0 flex items-center justify-center text-xs font-bold"
-                style={{ color: gpu.color }}
+                className="absolute inset-0 flex items-center justify-center text-xs"
+                style={{ color: '#2EE88E', fontWeight: 800 }}
               >
                 <CountUp to={gpu.util} duration={1.6} suffix="%" />
               </div>
             </div>
-            <div className="text-xs mt-1.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            <div className="text-xs mt-1.5" style={{ color: 'rgba(255,255,255,0.55)' }}>
               {t.bento.utilization}
             </div>
           </div>
@@ -283,9 +283,9 @@ function ComputeCard() {
             key={m}
             className="text-xs px-2.5 py-1 rounded-full"
             style={{
-              background: 'rgba(46, 232, 142,0.08)',
-              border: '1px solid rgba(46, 232, 142,0.2)',
-              color: '#93C5FD',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.18)',
+              color: '#FFFFFF',
             }}
           >
             {m}
@@ -310,21 +310,21 @@ function PredictionCard() {
       <div className="flex items-center gap-2 mb-1">
         <div
           className="w-6 h-6 rounded-lg flex items-center justify-center"
-          style={{ background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.3)' }}
+          style={{ background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(255,255,255,0.2)' }}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M7 1L8.5 5H13L9.5 7.5L11 12L7 9L3 12L4.5 7.5L1 5H5.5L7 1Z" stroke="#A78BFA" strokeWidth="1.2" strokeLinejoin="round" />
           </svg>
         </div>
-        <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>
+        <span className="text-xs font-semibold" style={{ color: '#FFFFFF' }}>
           {t.bento.prediction}
         </span>
-        <span className="ml-auto text-xs" style={{ color: 'rgba(255,255,255,0.3)' }}>
+        <span className="ml-auto text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
           {t.bento.via}
         </span>
       </div>
 
-      <div className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.25)' }}>
+      <div className="text-xs mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
         {t.bento.signals}
       </div>
 
@@ -348,7 +348,7 @@ function PredictionCard() {
             </div>
             <div
               className="h-1.5 rounded-full mb-1.5 overflow-hidden"
-              style={{ background: 'rgba(255,255,255,0.06)' }}
+              style={{ background: 'rgba(255,255,255,0.12)' }}
             >
               <motion.div
                 className="h-full rounded-full"
@@ -363,7 +363,7 @@ function PredictionCard() {
                 transition={{ duration: 1.2, ease: 'easeOut', delay: i * 0.15 }}
               />
             </div>
-            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
+            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
               {p.interpretation}
             </div>
           </motion.div>
