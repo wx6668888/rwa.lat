@@ -24,7 +24,7 @@ export default function IntroSequence() {
       {show && (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center"
-          style={{ background: '#05070D' }}
+          style={{ background: '#0A0A0B' }}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: 'easeInOut' }}

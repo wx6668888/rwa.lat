@@ -1,102 +1,46 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useRef, useEffect } from 'react'
+import { useI18n } from '@/lib/i18n'
 
-function ParticleField() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const setSize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    setSize()
-    window.addEventListener('resize', setSize)
-
-    interface Particle {
-      x: number; y: number; vx: number; vy: number; size: number; life: number; maxLife: number
-    }
-    const particles: Particle[] = []
-    for (let i = 0; i < 80; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: -0.3 - Math.random() * 0.6,
-        size: 1 + Math.random() * 2,
-        life: Math.random() * 100,
-        maxLife: 80 + Math.random() * 60,
-      })
-    }
-
-    let raf: number
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      for (const p of particles) {
-        p.x += p.vx
-        p.y += p.vy
-        p.life++
-        if (p.life > p.maxLife || p.y < 0) {
-          p.x = Math.random() * canvas.width
-          p.y = canvas.height + 10
-          p.life = 0
-        }
-        const fade = Math.min(p.life / 20, 1) * Math.min(1, (p.maxLife - p.life) / 20)
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(46, 232, 142,${0.4 * fade})`
-        ctx.fill()
-      }
-      raf = requestAnimationFrame(draw)
-    }
-    draw()
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', setSize)
-    }
-  }, [])
-
+function TopIcon() {
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      aria-hidden="true"
-    />
+    <div className="flex items-center justify-center w-9 h-6 rounded-md border border-white/15 bg-white/5">
+      <span className="flex gap-1">
+        <span className="w-1 h-1 rounded-full bg-white" />
+        <span className="w-1 h-1 rounded-full bg-white" />
+      </span>
+    </div>
   )
 }
 
-const footerLinks = [
-  { group: 'Product', links: ['AI Agents', 'Stock Intelligence', 'Compute', 'Signals', 'Portfolio'] },
-  { group: 'Company', links: ['About', 'Careers', 'Blog', 'Press'] },
-  { group: 'Legal', links: ['Privacy Policy', 'Terms of Service', 'Disclosures'] },
-]
+function SocialIcon({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <a
+      href="#"
+      aria-label={label}
+      className="text-white/60 transition-colors duration-200 hover:text-white"
+    >
+      {children}
+    </a>
+  )
+}
 
 export default function CTASection() {
+  const { t } = useI18n()
+
+  const scrollTop = () => {
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <>
       {/* CTA */}
       <section
         id="pricing"
-        className="relative py-32 px-4 overflow-hidden"
+        className="relative py-28 px-4 overflow-hidden"
         aria-label="Call to action"
       >
-        <ParticleField />
-
-        {/* Blue radial glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 60% at 50% 60%, rgba(46, 232, 142,0.12) 0%, transparent 70%)',
-          }}
-        />
-
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -104,76 +48,40 @@ export default function CTASection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Eyebrow */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium mb-8"
-              style={{
-                background: 'rgba(46, 232, 142,0.08)',
-                border: '1px solid rgba(46, 232, 142,0.25)',
-                color: '#5FF3AB',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full"
-                style={{ background: '#2EE88E', boxShadow: '0 0 8px #2EE88E' }}
-              />
-              The Future is Here
-            </div>
-
             <h2
-              className="text-balance font-bold leading-tight mb-6"
-              style={{
-                fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
-                background: 'linear-gradient(180deg, #FFFFFF 0%, #6B7280 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
+              className="text-balance font-bold leading-tight mb-6 text-white"
+              style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}
             >
-              The future of investing is intelligent.
+              {t.cta.heading}
             </h2>
 
             <p
               className="text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto"
               style={{ color: 'rgba(255,255,255,0.45)' }}
             >
-              Join thousands of investors already using RWA.LAT to make smarter,
-              faster, and more confident investment decisions powered by AI.
+              {t.cta.subtitle}
             </p>
 
             {/* CTA button */}
             <motion.a
               href="#app"
-              className="inline-flex items-center gap-3 px-10 py-4 text-base font-semibold rounded-full transition-all duration-300"
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.15)',
-                color: '#fff',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 0 60px rgba(46, 232, 142,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
-              }}
-              whileHover={{
-                scale: 1.04,
-                boxShadow: '0 0 80px rgba(46, 232, 142,0.4), inset 0 1px 0 rgba(255,255,255,0.15)',
-              }}
+              className="inline-flex items-center gap-3 px-9 py-4 text-base font-semibold rounded-full"
+              style={{ background: '#2EE88E', color: '#05221A' }}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ background: '#2EE88E', boxShadow: '0 0 10px #2EE88E' }}
-              />
-              Join RWA.LAT
+              {t.cta.button}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </motion.a>
 
             {/* Social proof */}
-            <div className="flex items-center justify-center gap-6 mt-10 flex-wrap">
+            <div className="flex items-center justify-center gap-8 mt-12 flex-wrap">
               {[
-                { label: 'Active Users', value: '24K+' },
-                { label: 'Assets Analyzed', value: '$2.4B+' },
-                { label: 'AI Accuracy', value: '91.4%' },
+                { label: t.cta.users, value: '24K+' },
+                { label: t.cta.assets, value: '$2.4B+' },
+                { label: t.cta.accuracy, value: '91.4%' },
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -192,86 +100,105 @@ export default function CTASection() {
         </div>
       </section>
 
-      {/* Giant brand wordmark */}
-      <section
-        className="relative overflow-hidden px-4 pt-10 pb-4 select-none"
-        aria-hidden="true"
-      >
-        <motion.div
-          className="max-w-[1600px] mx-auto flex items-center justify-center gap-[0.05em]"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-15%' }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span
-            className="font-bold leading-none tracking-tighter whitespace-nowrap"
-            style={{
-              fontSize: 'clamp(3.5rem, 21vw, 20rem)',
-              color: '#2EE88E',
-              letterSpacing: '-0.04em',
-            }}
-          >
-            RWA.LAT
-          </span>
-          <motion.span
-            className="inline-block shrink-0"
-            style={{
-              width: 'clamp(1rem, 5vw, 4.5rem)',
-              height: 'clamp(1rem, 5vw, 4.5rem)',
-              background: '#2EE88E',
-              transform: 'rotate(45deg)',
-              marginLeft: 'clamp(0.5rem, 2vw, 2rem)',
-            }}
-            animate={{ rotate: [45, 135, 45] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </motion.div>
-      </section>
-
       {/* Footer */}
-      <footer className="relative border-t px-6 py-14" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+      <footer className="relative border-t px-6 pt-10 pb-12" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
-            {/* Brand */}
-            <div>
-              <div className="text-base font-bold tracking-widest text-white uppercase mb-3">
-                RWA.LAT
-              </div>
-              <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
-                AI-powered investment intelligence for the next generation of investors.
-              </p>
-            </div>
-            {footerLinks.map((group) => (
-              <div key={group.group}>
-                <div className="text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                  {group.group}
-                </div>
-                <ul className="flex flex-col gap-2">
-                  {group.links.map((link) => (
-                    <li key={link}>
-                      <a
-                        href="#"
-                        className="text-xs transition-colors duration-200"
-                        style={{ color: 'rgba(255,255,255,0.45)' }}
-                        onMouseEnter={(e) => { e.currentTarget.style.color = '#fff' }}
-                        onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.45)' }}
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* Brand mark icon */}
+          <div className="mb-10">
+            <TopIcon />
           </div>
 
+          {/* Link columns */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 mb-12">
+            {/* Terms */}
+            <div>
+              <div className="text-sm font-medium mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                {t.footer.terms}
+              </div>
+              <ul className="flex flex-col gap-3">
+                {[t.footer.termsOfService, t.footer.privacy, t.footer.cookie].map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-sm font-semibold text-white hover:text-[#2EE88E] transition-colors">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <div className="text-sm font-medium mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                {t.footer.resources}
+              </div>
+              <ul className="flex flex-col gap-3">
+                {[t.footer.docs, t.footer.blog, t.footer.changelog].map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-sm font-semibold text-white hover:text-[#2EE88E] transition-colors">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Connect + socials */}
+            <div className="col-span-2">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="text-sm font-medium mb-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                    {t.footer.connect}
+                  </div>
+                  <ul className="flex flex-col gap-3">
+                    {[t.footer.feedback, t.footer.discord, t.footer.reddit, t.footer.community].map((link) => (
+                      <li key={link}>
+                        <a href="#" className="text-sm font-semibold text-white hover:text-[#2EE88E] transition-colors">
+                          {link}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Social icons */}
+                <div className="flex items-center gap-5 pt-8">
+                  <SocialIcon label="X">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.9 1.5h3.7l-8 9.2 9.4 12.4h-7.4l-5.8-7.6-6.6 7.6H.5l8.6-9.8L0 1.5h7.6l5.2 6.9 6.1-6.9Zm-1.3 19.6h2L6.5 3.6H4.4l13.2 17.5Z" />
+                    </svg>
+                  </SocialIcon>
+                  <SocialIcon label="Discord">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.3.5c1.6.4 2.9 1 4.2 1.8a13.6 13.6 0 0 0-11-.4c-.6.2-1 .4-1.4.4.4-.9 1-1.6 1-1.6l-.3-.4A19.8 19.8 0 0 0 3.7 4.4C.8 8.8 0 13 .4 17.2a20 20 0 0 0 6 3l.8-1.2c-.7-.3-1.3-.6-1.9-1l.5-.3a14.3 14.3 0 0 0 12.3 0l.5.3c-.6.4-1.2.7-1.9 1l.8 1.2a20 20 0 0 0 6-3c.5-4.9-.8-9.1-3.5-12.8ZM8.3 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm7.4 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z" />
+                    </svg>
+                  </SocialIcon>
+                  <SocialIcon label="Reddit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22 12c0-1.2-1-2.2-2.2-2.2-.6 0-1.1.2-1.5.6a10.8 10.8 0 0 0-5.6-1.8l1-4.4 3.1.7a1.6 1.6 0 1 0 .2-1L13.3 3c-.2 0-.4.1-.4.3l-1.1 4.9a10.8 10.8 0 0 0-5.7 1.8 2.2 2.2 0 1 0-2.4 3.6 4 4 0 0 0 0 .6c0 3.2 3.7 5.7 8.3 5.7s8.3-2.5 8.3-5.7v-.6c.8-.4 1.4-1.2 1.4-2.3Zm-14 1.5a1.6 1.6 0 1 1 3.2 0 1.6 1.6 0 0 1-3.2 0Zm8.9 4.2c-1 1-3 1.1-3.6 1.1-.6 0-2.6 0-3.6-1.1a.4.4 0 0 1 .5-.5c.7.6 2 .8 3.1.8 1 0 2.4-.2 3-.8a.4.4 0 1 1 .6.5Zm-.3-2.6a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2Z" />
+                    </svg>
+                  </SocialIcon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
           <div
-            className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t text-xs"
-            style={{ borderColor: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.25)' }}
+            className="pt-6 flex items-center justify-between gap-4 border-t text-xs"
+            style={{ borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.35)' }}
           >
-            <span>© 2026 RWA.LAT. All rights reserved.</span>
-            <span>Investment intelligence powered by artificial intelligence. Not financial advice.</span>
+            <span>{t.footer.copyright}</span>
+            <button
+              onClick={scrollTop}
+              className="inline-flex items-center gap-2 font-semibold text-white hover:text-[#2EE88E] transition-colors"
+            >
+              {t.footer.backToTop}
+              <span className="flex items-center justify-center w-5 h-5 rounded-full border border-white/25">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 9V3M3 6l3-3 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </button>
           </div>
         </div>
       </footer>

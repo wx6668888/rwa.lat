@@ -6,48 +6,58 @@ import AIAnalystSection from '@/components/ai-analyst-section'
 import PortfolioSection from '@/components/portfolio-section'
 import CTASection from '@/components/cta-section'
 import IntroSequence from '@/components/intro-sequence'
-import AmbientBackground from '@/components/ambient-background'
+import BrandMark from '@/components/brand-mark'
+import { LanguageProvider } from '@/lib/i18n'
 
 export default function Page() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden" style={{ background: '#05070D' }}>
-      {/* Cinematic intro overlay */}
-      <IntroSequence />
+    <LanguageProvider>
+      <main
+        className="relative min-h-screen overflow-x-hidden"
+        style={{ background: '#0A0A0B', ['--brand-reveal' as string]: 'clamp(70px, 20vw, 220px)' }}
+      >
+        {/* Cinematic intro overlay */}
+        <IntroSequence />
 
-      {/* Ambient floating light field */}
-      <AmbientBackground />
+        {/* Navbar */}
+        <Navbar />
 
-      {/* Navbar */}
-      <Navbar />
+        {/* Giant fixed wordmark revealed at the bottom of the page */}
+        <BrandMark />
 
-      <div className="relative z-10">
-      {/* Hero */}
-      <HeroSection />
+        {/* Solid-background content that scrolls over the wordmark */}
+        <div
+          className="relative z-10"
+          style={{ background: '#0A0A0B', marginBottom: 'var(--brand-reveal)' }}
+        >
+          {/* Hero */}
+          <HeroSection />
 
-      {/* Market Marquee */}
-      <MarketMarquee />
+          {/* Market Marquee */}
+          <MarketMarquee />
 
-      {/* Divider */}
-      <div className="w-full h-px max-w-5xl mx-auto" style={{ background: 'rgba(255,255,255,0.05)' }} />
+          {/* Divider */}
+          <div className="w-full h-px max-w-5xl mx-auto" style={{ background: 'rgba(255,255,255,0.06)' }} />
 
-      {/* Bento Intelligence Modules */}
-      <BentoSection />
+          {/* Bento modules */}
+          <BentoSection />
 
-      {/* Divider */}
-      <div className="w-full h-px max-w-5xl mx-auto" style={{ background: 'rgba(255,255,255,0.05)' }} />
+          {/* Divider */}
+          <div className="w-full h-px max-w-5xl mx-auto" style={{ background: 'rgba(255,255,255,0.06)' }} />
 
-      {/* AI Analyst Showcase */}
-      <AIAnalystSection />
+          {/* AI Analyst Showcase */}
+          <AIAnalystSection />
 
-      {/* Divider */}
-      <div className="w-full h-px max-w-5xl mx-auto" style={{ background: 'rgba(255,255,255,0.05)' }} />
+          {/* Divider */}
+          <div className="w-full h-px max-w-5xl mx-auto" style={{ background: 'rgba(255,255,255,0.06)' }} />
 
-      {/* Portfolio Intelligence */}
-      <PortfolioSection />
+          {/* Portfolio Intelligence */}
+          <PortfolioSection />
 
-      {/* CTA + Footer */}
-      <CTASection />
-      </div>
-    </main>
+          {/* CTA + Footer */}
+          <CTASection />
+        </div>
+      </main>
+    </LanguageProvider>
   )
 }

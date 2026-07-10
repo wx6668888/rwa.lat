@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+
+const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
   title: 'RWA.LAT — AI Investment Intelligence Platform',
@@ -15,7 +19,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#05070D',
+  themeColor: '#0A0A0B',
   width: 'device-width',
   initialScale: 1,
 }
@@ -26,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-[#05070D]">
-      <body className="antialiased font-sans bg-[#05070D] text-white overflow-x-hidden">
+    <html lang="en" className={`bg-[#0A0A0B] ${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased font-sans bg-[#0A0A0B] text-white overflow-x-hidden">
         {children}
       </body>
     </html>

@@ -1,7 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
-
 const marketItems = [
   { symbol: 'NVDA', name: 'NVIDIA', score: 92, trend: '+4.2%', positive: true },
   { symbol: 'AAPL', name: 'Apple', score: 84, trend: '+1.8%', positive: true },
@@ -18,18 +16,18 @@ const marketItems = [
 function MarketCard({ item }: { item: typeof marketItems[0] }) {
   return (
     <div
-      className="flex-none flex items-center gap-4 px-5 py-3 mx-2"
+      className="flex-none flex items-center gap-3 px-3.5 py-2 mx-1.5"
       style={{
         background: 'rgba(255,255,255,0.04)',
         border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: '12px',
-        minWidth: '180px',
+        borderRadius: '10px',
+        minWidth: '138px',
       }}
     >
       {/* Symbol */}
       <div>
         <div className="text-xs font-bold text-white tracking-wide">{item.symbol}</div>
-        <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.4)' }}>
+        <div className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.4)' }}>
           {item.name}
         </div>
       </div>
@@ -40,11 +38,11 @@ function MarketCard({ item }: { item: typeof marketItems[0] }) {
       <div className="text-right">
         {item.score !== null ? (
           <>
-            <div className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <div className="text-[10px]" style={{ color: 'rgba(255,255,255,0.4)' }}>
               AI Score
             </div>
             <div
-              className="text-sm font-bold"
+              className="text-xs font-bold"
               style={{ color: item.score >= 85 ? '#2EE88E' : item.score >= 75 ? '#5FF3AB' : 'rgba(255,255,255,0.7)' }}
             >
               {item.score}
@@ -52,7 +50,7 @@ function MarketCard({ item }: { item: typeof marketItems[0] }) {
           </>
         ) : (
           <div
-            className="text-xs font-semibold"
+            className="text-[11px] font-semibold"
             style={{ color: item.positive ? '#34D399' : '#F87171' }}
           >
             {item.trend}
@@ -60,7 +58,7 @@ function MarketCard({ item }: { item: typeof marketItems[0] }) {
         )}
         {item.score !== null && (
           <div
-            className="text-xs font-medium"
+            className="text-[10px] font-medium"
             style={{ color: item.positive ? '#34D399' : '#F87171' }}
           >
             {item.trend}
@@ -75,43 +73,19 @@ export default function MarketMarquee() {
   const doubled = [...marketItems, ...marketItems]
 
   return (
-    <section id="markets" className="relative py-16 overflow-hidden" aria-label="Market intelligence ticker">
-      {/* Section label */}
-      <motion.div
-        className="text-center mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span
-          className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase"
-          style={{ color: 'rgba(255,255,255,0.35)' }}
-        >
-          <span
-            className="w-8 h-px"
-            style={{ background: 'rgba(255,255,255,0.15)' }}
-          />
-          Live Market Intelligence
-          <span
-            className="w-8 h-px"
-            style={{ background: 'rgba(255,255,255,0.15)' }}
-          />
-        </span>
-      </motion.div>
-
-      {/* Top fade */}
+    <section id="markets" className="relative pt-4 pb-10 overflow-hidden" aria-label="Market intelligence ticker">
+      {/* Left fade */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(to right, #05070D, transparent)',
+          background: 'linear-gradient(to right, #0A0A0B, transparent)',
         }}
       />
       {/* Right fade */}
       <div
-        className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(to left, #05070D, transparent)',
+          background: 'linear-gradient(to left, #0A0A0B, transparent)',
         }}
       />
 

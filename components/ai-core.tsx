@@ -282,7 +282,7 @@ export default function AICore() {
   return (
     <div
       className="relative w-full"
-      style={{ height: 'min(560px, 85vw)' }}
+      style={{ height: 'clamp(340px, 78vw, 540px)' }}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       aria-label="Global market intelligence globe"
@@ -292,12 +292,12 @@ export default function AICore() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle at 50% 50%, rgba(46,232,142,0.22) 0%, rgba(46,232,142,0.05) 42%, transparent 68%)',
-          filter: 'blur(45px)',
+            'radial-gradient(circle at 50% 50%, rgba(46,232,142,0.10) 0%, rgba(46,232,142,0.02) 40%, transparent 62%)',
+          filter: 'blur(50px)',
         }}
       />
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 42 }}
+        camera={{ position: [0, 0, 6.4], fov: 42 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         style={{ background: 'transparent' }}
