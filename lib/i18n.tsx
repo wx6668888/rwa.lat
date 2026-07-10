@@ -28,6 +28,13 @@ type Dict = {
     pricing: string
     login: string
     download: string
+    beta: string
+    menu: {
+      assistant: { title: string; desc: string }
+      stock: { title: string; desc: string }
+      compute: { title: string; desc: string }
+      prediction: { title: string; desc: string }
+    }
   }
   hero: {
     title1: string
@@ -116,6 +123,13 @@ const en: Dict = {
     pricing: 'Pricing',
     login: 'Login',
     download: 'Download App',
+    beta: 'BETA',
+    menu: {
+      assistant: { title: 'AI Assistant', desc: 'Your always-on investment agent' },
+      stock: { title: 'Stock Intelligence', desc: 'AI-scored equities in real time' },
+      compute: { title: 'AI Compute', desc: 'On-demand model infrastructure' },
+      prediction: { title: 'Prediction Markets', desc: 'Signals from Polymarket, decoded' },
+    },
   },
   hero: {
     title1: 'Invest Smarter.',
@@ -217,6 +231,13 @@ const zh: Dict = {
     pricing: '定价',
     login: '登录',
     download: '下载应用',
+    beta: '测试版',
+    menu: {
+      assistant: { title: 'AI 助手', desc: '全天候在线的投资助手' },
+      stock: { title: '股票情报', desc: '实时 AI 评分的股票' },
+      compute: { title: 'AI 算力', desc: '按需的模型基础设施' },
+      prediction: { title: '预测市场', desc: '解读来自 Polymarket 的信号' },
+    },
   },
   hero: {
     title1: '更聪明地投资。',
@@ -318,6 +339,13 @@ const ja: Dict = {
     pricing: '料金',
     login: 'ログイン',
     download: 'アプリを入手',
+    beta: 'ベータ',
+    menu: {
+      assistant: { title: 'AI アシスタント', desc: '常時稼働する投資エージェント' },
+      stock: { title: '株式インテリジェンス', desc: 'リアルタイムの AI スコア付き株式' },
+      compute: { title: 'AI コンピュート', desc: 'オンデマンドのモデル基盤' },
+      prediction: { title: '予測マーケット', desc: 'Polymarket のシグナルを解読' },
+    },
   },
   hero: {
     title1: 'よりスマートに投資。',
@@ -419,6 +447,13 @@ const ko: Dict = {
     pricing: '요금',
     login: '로그인',
     download: '앱 다운로드',
+    beta: '베타',
+    menu: {
+      assistant: { title: 'AI 어시스턴트', desc: '항상 켜져 있는 투자 에이전트' },
+      stock: { title: '주식 인텔리전스', desc: '실시간 AI 점수 주식' },
+      compute: { title: 'AI 컴퓨트', desc: '온디맨드 모델 인프라' },
+      prediction: { title: '예측 마켓', desc: 'Polymarket 시그널 해독' },
+    },
   },
   hero: {
     title1: '더 똑똑하게 투자하세요.',
