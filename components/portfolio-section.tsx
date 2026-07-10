@@ -69,7 +69,6 @@ function PortfolioChart() {
 }
 
 export default function PortfolioSection() {
-<<<<<<< HEAD
   const { t } = useI18n()
 
   // in-function scope: avoids Turbopack export-mode SSR hoisting drop of module-level const
